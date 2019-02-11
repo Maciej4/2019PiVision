@@ -12,7 +12,7 @@ import sys
 programStart = time.time()
 print(programStart)
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 cap.set(3, 160) #160
 cap.set(4, 120) #120
 
@@ -134,9 +134,12 @@ while(1):
                     cv2.drawContours(frame, [xBoxList[index + 1]], -1, (255, 0, 0), 2)
 
                 focalLength = (64 * 34) / 13
-                leftDistance = (13 * focalLength) / longSide(xBoxList[dockList[0]])
-                rightDistance = (13 * focalLength) / longSide(xBoxList[dockList[0] + 1])
-                dockDistanceCm = (leftDistance + rightDistance) / 2
+                #leftDistance = (13 * focalLength) / longSide(xBoxList[dockList[0]])
+                #rightDistance = (13 * focalLength) / longSide(xBoxList[dockList[0] + 1])
+                #dockDistanceCm = (leftDistance + rightDistance) / 2
+                leftCenterPoint = average((xBoxList[dockList[0]]))
+                rightCenterPoint = average((xBoxList[dockList[0] + 1]))
+                dockDistanceCm = (28 * focalLength) / dist(leftCenterPoint, rightCenterPoint)
                 dockXPos = ((boxCenX(xBoxList[dockList[0]]) + boxCenX(xBoxList[dockList[0] + 1])) / 2) - 80
                 dockAngle = dockXPos * 0.3
                 print("Dock angle", dockAngle)
