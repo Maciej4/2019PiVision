@@ -14,7 +14,7 @@ sudo mkdir /run/vision
 ### Add service config file:
 sudo vim /etc/systemd/system/vision.service
 
-```python
+```
 [Unit]
 Description=vision daemon
 After=network.target
